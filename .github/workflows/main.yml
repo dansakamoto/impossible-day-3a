@@ -1,12 +1,12 @@
-on:
-  push:
-    branches:
-      - 'main'
+on: 
+ pull_request:
+  types: [closed] 
 jobs:
-  glitch-sync:
+  repo-sync:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - name: glitch-sync
+    - name: repo-sync
       uses: wei/git-sync@v1
       env:
         SOURCE_REPO: "https://github.com/dansakamoto/impossible-day-3a.git"
